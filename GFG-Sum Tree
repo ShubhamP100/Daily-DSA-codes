@@ -1,0 +1,39 @@
+class Solution
+{
+    public:
+    pair<bool,int> CheckSum(Node* root){
+        if(root==NULL){
+            pair<bool,int> p =make_pair(true,0);
+            return p;
+        }
+        if(root->left==NULL && root->right==NULL){
+            pair<bool,int> p =make_pair(true,root->data);
+            return p;
+        }
+     pair<bool,int> leftans =  CheckSum(root->left);
+     
+     pair<bool,int> rightans =  CheckSum(root->right);
+     
+     bool leftCheck=leftans.first;
+     bool rightCheck=rightans.first;
+     
+     int leftSum=leftans.second;
+     int rightSum=rightans.second;
+     
+     bool CheckCondition= root->data== leftSum+ rightSum;
+     pair<bool,int> ans;
+     if(leftCheck && rightCheck && CheckCondition){
+         ans.first =true;
+         ans.second=root->data + leftSum+rightSum;
+     }
+     else{
+         ans.first=false;
+     }
+     return ans;
+    }
+    bool isSumTree(Node* root)
+    {
+         // Your code here
+         CheckSum(root).first;
+    }
+};// Do it properly beacuse it asks in microsoft flipcart amazon mncs
