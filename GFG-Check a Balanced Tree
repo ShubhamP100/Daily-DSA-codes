@@ -1,0 +1,31 @@
+
+class Solution{
+    public:
+    //Function to check whether a binary tree is balanced or not.
+    pair<bool,int> Balanced(Node *root){
+    if( root==NULL){
+        pair<bool,int> p=make_pair(true,0);
+        return p;
+    }
+    pair<int,int> left=Balanced(root->left);
+    pair<int,int> right=Balanced(root->right);
+    
+    bool lans=left.first;
+    bool rans=right.first;
+    bool diff=abs(left.second-right.second)<=1;
+    pair<int,int> ans;
+    ans.second=max(left.second,right.second)+1;
+    if(lans && rans && diff){
+        ans.first= true;
+    }else{
+        ans.first=false;
+    }
+    return ans;
+    
+    }
+    bool isBalanced(Node *root)
+    {
+        //  Your Code here
+        return Balanced(root).first;
+    } ///GFG SOLUTION
+};
