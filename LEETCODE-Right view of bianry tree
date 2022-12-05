@@ -1,0 +1,19 @@
+
+class Solution {
+public:
+    void rightsize(TreeNode* root,vector<int> &Store,int lev){
+        if(root==NULL)
+            return;
+        if(lev==Store.size())
+            Store.push_back(root->val);
+         rightsize(root->right,Store,lev+1);
+        rightsize(root->left,Store,lev+1);
+        
+    }
+    
+    vector<int> rightSideView(TreeNode* root) {
+     vector<int> Store;
+        rightsize(root,Store,0);
+        return Store;
+    }//LEETCODE SOLUTION
+};
