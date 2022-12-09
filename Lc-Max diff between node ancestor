@@ -1,0 +1,27 @@
+class Solution {
+public:
+  int diff;
+    void Tofindroot(TreeNode* root,TreeNode* child){
+          if(!root || !child) 
+          return;
+          //diff=max(diff,abs(root->val-child->val));
+            diff = max(diff, abs(root->val - child->val));
+          Tofindroot(root,child->left);
+          Tofindroot(root,child->right);
+    }
+    void ToFind(TreeNode* root){
+        if(root==NULL) return;
+       Tofindroot(root,root->left);
+       Tofindroot(root,root->right);
+    
+       ToFind(root->left);
+       ToFind(root->right);
+
+    }
+  
+    int maxAncestorDiff(TreeNode* root) {
+     diff=-1;
+        ToFind(root);
+        return diff;
+    }
+};
