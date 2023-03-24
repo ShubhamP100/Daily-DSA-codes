@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+using namespace std;
+class Solution
+
+{
+    public:
+    pair<long,long> indexes(vector<long long> v, long long x)
+    {
+        // code here
+        
+        pair<long,long> ans={-1,-1};
+        
+        long i=0,j=v.size()-1;
+        while(i<v.size()){
+            if(v[i]==x){
+             ans.first=i;
+             break;
+            }
+             i++;
+             
+        }
+        if(ans.first==-1) return ans;
+        while(j>=0){
+            if(v[j]==x){
+                ans.second=j;
+                break;
+            }
+            j--;
+        }
+        return ans;
+    }
+};// the most effective solution
